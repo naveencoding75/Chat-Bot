@@ -11,6 +11,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
 }
+
 .chatbot-container {
     width: 700px;
     max-width: 95%;
@@ -24,6 +25,7 @@ body {
     overflow: hidden;
     border: 2px solid #14b8a6;
 }
+
 .chatbot-header {
     background: #14b8a6;
     color: #fff;
@@ -34,6 +36,7 @@ body {
     letter-spacing: 1.2px;
     border-bottom: 2px solid #0f766e;
 }
+
 .chatbot-messages {
     flex: 1;
     padding: 25px;
@@ -41,13 +44,16 @@ body {
     background: transparent;
     color: #1f2937;
 }
+
 .chatbot-messages::-webkit-scrollbar {
     width: 10px;
 }
+
 .chatbot-messages::-webkit-scrollbar-thumb {
     background: #f97316;
     border-radius: 5px;
 }
+
 .message {
     margin: 20px 0;
     padding: 15px 20px;
@@ -58,16 +64,19 @@ body {
     position: relative;
     animation: slideIn 0.3s ease;
 }
+
 @keyframes slideIn {
     from { transform: translateX(-20px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
+
 .bot-message {
     background: linear-gradient(45deg, #f97316, #fb923c);
     color: #fff;
-    margin-right:  ingestion 30px;
+    margin-right: 30px;
     border-top-left-radius: 10px;
 }
+
 .bot-message::before {
     content: '';
     position: absolute;
@@ -78,6 +87,7 @@ body {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
+
 .user-message {
     background: linear-gradient(45deg, #14b8a6, #2dd4bf);
     color: #fff;
@@ -85,6 +95,7 @@ body {
     margin-right: 30px;
     border-top-right-radius: 10px;
 }
+
 .user-message::after {
     content: '';
     position: absolute;
@@ -95,12 +106,14 @@ body {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
+
 .chatbot-input {
     display: flex;
     padding: 20px;
     background: rgba(255, 255, 255, 0.2);
     border-top: 1px solid #14b8a6;
 }
+
 .chatbot-input input {
     flex: 1;
     padding: 15px 25px;
@@ -113,10 +126,12 @@ body {
     margin-right: 15px;
     transition: border-color 0.3s, background 0.3s;
 }
+
 .chatbot-input input:focus {
     border-color: #f97316;
     background: rgba(255, 255, 255, 0.5);
 }
+
 .chatbot-input button {
     width: 50px;
     height: 50px;
@@ -132,9 +147,11 @@ body {
     justify-content: center;
     transition: background 0.3s;
 }
+
 .chatbot-input button:hover {
     background: #ea580c;
 }
+
 .start-learning-btn {
     position: fixed;
     bottom: 30px;
@@ -154,14 +171,17 @@ body {
     justify-content: center;
     transition: transform 0.3s, background 0.3s;
 }
+
 .start-learning-btn:hover {
     background: #0f766e;
     transform: scale(1.1);
 }
+
 .start-learning-btn svg {
     width: 24px;
     height: 24px;
 }
+
 @media (max-width: 768px) {
     .chatbot-container {
         width: 100%;
