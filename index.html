@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Learning Chatbot</title>
+    <script src="embed.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="start-learning-btn" onclick="toggleChatbot()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5v-4a2 2 0 012-2h10a2 2 0 012 2v4h-4M12 4v6" />
+        </svg>
+    </button>
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">Digital Learning Assistant</div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">Hi! I'm here to help you learn about WhatsApp, Paytm, and Google Maps. Ask me something like "How do I send a photo on WhatsApp?" or type "FAQ" to see common questions.</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="userInput" placeholder="Type your question...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        const faqData = {
+            "whatsapp": [
+                {
+                    question: "How do I send a photo on WhatsApp?",
+                    answer: "1. Open WhatsApp and go to the chat where you want to send the photo.\n2. Tap the paperclip icon next to the message input box.\n3. Select 'Gallery' or 'Camera'.\n4. Choose a photo from your gallery or take a new one.\n5. Add a caption if you want, then tap the send button (green arrow)."
+                },
+                {
+                    question: "How do I make a WhatsApp call?",
+                    answer: "1. Open WhatsApp and go to the chat or contact you want to call.\n2. Tap the phone icon at the top right.\n3. Choose 'Voice call' or 'Video call'.\n4. Wait for the call to connect."
+                }
+            ],
+            "paytm": [
+                {
+                    question: "What is Paytm?",
+                    answer: "Paytm is a digital payment platform in India that allows you to pay bills, transfer money, and shop online. You can link your bank account or use the Paytm wallet for transactions."
+                },
+                {
+                    question: "How do I send money using Paytm?",
+                    answer: "1. Open the Paytm app and log in.\n2. Tap 'Pay' or 'Send Money'.\n3. Enter the recipient's mobile number or scan their QR code.\n4. Enter the amount and add a note if needed.\n5. Confirm the payment with your PIN or biometric authentication."
+                }
+            ],
+            "googlemaps": [
+                {
+                    question: "How do I find directions on Google Maps?",
+                    answer: "1. Open Google Maps on your phone or computer.\n2. Enter your destination in the search bar.\n3. Tap or click 'Directions'.\n4. Enter your starting point (or use your current location).\n5. Choose your mode of transport (car, public transit, walking, etc.).\n6. Follow the suggested route."
+                },
+                {
+                    question: "How do I save a place in Google Maps?",
+                    answer: "1. Open Google Maps and search for the place.\n2. Tap the place name or pin on the map.\n3. Tap 'Save' and choose a list (e.g., Favorites, Want to go).\n4. The place is now saved for later access."
+                }
+            ]
+        };
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput').value.trim().toLowerCase();
+            if (!userInput) return;
+
+            const messagesDiv = document.getElementById('chatbotMessages');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = userInput;
+            messagesDiv.appendChild(userMessage);
+
+            let botResponse = '';
+            if (userInput === 'faq') {
+                botResponse = 'Here are some FAQs:\n';
+                for (const app in faqData) {
+                    faqData[app].forEach(faq => {
+                        botResponse += `• ${faq.question}\n`;
+                    });
+                }
+                botResponse += 'Ask any of these questions for a detailed guide!';
+            } else {
+                let found = false;
+                for (const app in faqData) {
+                    const faq = faqData[app].find(item => userInput.includes(item.question.toLowerCase()));
+                    if (faq) {
+                        botResponse = faq.answer;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    botResponse = "Sorry, I don't have an answer for that. Try asking something like 'How do I send a photo on WhatsApp?' or type 'FAQ' for a list of questions.";
+                }
+            }
+
+            const botMessage = document.createElement('div');
+            botMessage.className = 'message bot-message';
+            botMessage.innerText = botResponse;
+            messagesDiv.appendChild(botMessage);
+
+            document.getElementById('userInput').value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function toggleChatbot() {
+            const chatbotContainer = document.getElementById('chatbotContainer');
+            chatbotContainer.style.display = chatbotContainer.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
