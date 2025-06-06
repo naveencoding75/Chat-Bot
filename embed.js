@@ -4,7 +4,7 @@
     document.body.appendChild(chatbotDiv);
 
     const iframe = document.createElement('iframe');
-    iframe.src = 'URL_TO_YOUR_CHATBOT_HTML'; // Replace with your hosted index.html URL (e.g., https://your-site.com/index.html or ./index.html for local testing)
+    iframe.src = 'https://naveencoding75.github.io/Chat-Bot/index.html'; // Replace with your hosted index.html URL (e.g., https://your-site.com/index.html or ./index.html for local testing)
     iframe.style.width = '700px';
     iframe.style.maxWidth = '95%';
     iframe.style.height = '800px';
